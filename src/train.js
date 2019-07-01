@@ -15,13 +15,10 @@ module.exports = {
  * MPG on the y-axis.
  */
 function convertToTensor(data) {
-  // Wrapping these calculations in a tidy will dispose any
-  // intermediate tensors.
+  // Wrapping these calculations in a tidy will dispose any intermediate tensors.
   return tf.tidy(() => {
-    // Step 1. Shuffle the data
     tf.util.shuffle(data);
 
-    // Step 2. Convert data to Tensor
     const inputs = data.map(o => [
       o.X.CRIM,
       o.X.ZN,
@@ -46,19 +43,12 @@ function convertToTensor(data) {
     const axis = 0;
     const inputMax = inputTensor.max(axis);
     const inputMin = inputTensor.min(axis);
-    const labelMax = labelTensor.max(axis);
-    const labelMin = labelTensor.min(axis);
 
     const normalizedInputs = inputTensor.sub(inputMin).div(inputMax.sub(inputMin));
 
     return {
       inputs: normalizedInputs,
       labels: labelTensor,
-      // Return the min/max bounds so we can use them later.
-      inputMax,
-      inputMin,
-      labelMax,
-      labelMin,
     };
   });
 }
