@@ -13,7 +13,7 @@
     "@tensorflow/tfjs": "^1.2.2",
     "@tensorflow/tfjs-node-gpu": "^1.2.3",
     "@tensorflow/tfjs-vis": "^1.1.0",
-    "fast-csv": "^3.0.1",
+    "fast-csv": "^4.3.6",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
